@@ -25,7 +25,7 @@
 
 
 
-■Unity
+■参考サイト
 ・Unityプロジェクトのバージョン管理にはGitHub Desktopを使おう
 https://qiita.com/hkomo746/items/a4f99261868069f6eeb5
 ※Github for Unityはログインすらできなかった。
@@ -71,3 +71,17 @@ https://qiita.com/sabamotto/items/7aa3a988dd4cd45633db
 http://matudozer.blog.fc2.com/blog-entry-28.html
 
 ・スプライト（公式ドキュメント）
+https://docs.unity3d.com/ja/2018.4/Manual/Sprites.html
+
+・Unityで経過時間、制限時間を表示する機能を作成する
+https://gametukurikata.com/program/time
+
+■参考サイト（未）
+・透過PNGの設定方法　Unity
+https://note.com/app49/n/n4e5a5f7aac2c
+
+・UnityでScriptableObjectを使ってアイテムデータベースを作成する
+https://gametukurikata.com/program/scriptableobjectitemdatabase
+
+・今日からUnity + Visual Studio Codeを用いた快適な開発生活(随時更新中)
+https://qiita.com/4_mio_11/items/e7b0a5e65c89ac9d6d7f
