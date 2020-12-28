@@ -12,5 +12,6 @@ public class EnemyData
         public Sprite normalSprite;
         public Sprite damagedSprite;
         public Sprite defeatedSprite;
+        public AudioClip defeatedSoundClip;
     }
 }

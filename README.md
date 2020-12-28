@@ -4,16 +4,18 @@
 ## TODO（済）
 ・ボタンをクリックするとHPが減ってやっつけたら次の敵が出てくる
 ・敵データのクラス化
+・敵スプライトの作成
+・敵スプライトのタイマー差し替え
+・攻撃音、撃破音の再生
 
 ## TODO（なう）
-・敵スプライトの作成
-・敵スプライトのアニメーション
+・CircleCI、DeployGateを回してAndroidで簡単にテストできるようにする。
 
 ## TODO（未）
-・背景の設定
+・背景画像の設定
 ・戦闘曲のループ再生
 ・タップ時の攻撃エフェクト
-・CircleCI、DeployGateを回してAndroidで簡単にテストできるようにする。
+・BPM設定
 ・タイトルシーンとバトルシーンに分ける。
 ・認証
 ・マスタデータ取得APIとの通信
@@ -76,6 +78,18 @@ https://docs.unity3d.com/ja/2018.4/Manual/Sprites.html
 ・Unityで経過時間、制限時間を表示する機能を作成する
 https://gametukurikata.com/program/time
 
+・Unityで音を再生する
+http://stepbystepweb.hatenablog.com/entry/2014/03/07/150204
+※Loadの記法は以下URLの方法が新しい書き方の様子。
+
+・【Unity】BGM,SEをとりあえず再生したい人へ
+https://qiita.com/ioaxis/items/58ac66098545b3565dee
+
+
+
+
+
+
 ■参考サイト（未）
 ・透過PNGの設定方法　Unity
 https://note.com/app49/n/n4e5a5f7aac2c
@@ -85,3 +99,8 @@ https://gametukurikata.com/program/scriptableobjectitemdatabase
 
 ・今日からUnity + Visual Studio Codeを用いた快適な開発生活(随時更新中)
 https://qiita.com/4_mio_11/items/e7b0a5e65c89ac9d6d7f
+
+・Unityゲーム開発におけるAndroidのサウンド再生遅延対策
+https://qiita.com/Takaaki_Ichijo/items/a774ecc3483e1761776f
+https://game.criware.jp/products/adx2-le/
+https://logmi.jp/tech/articles/321019
