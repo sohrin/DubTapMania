@@ -4,8 +4,9 @@ namespace DubTapMusic
 {
 public class EnemyData
     {
-        public int id;
+        public string id;
         public string name;
+        // TODO: 表示名(displayName)、多言語対応
         public int hp;
         public int atk;
         public int def;
@@ -13,5 +14,20 @@ public class EnemyData
         public Sprite damagedSprite;
         public Sprite defeatedSprite;
         public AudioClip defeatedSoundClip;
+
+        public string getResoursePathFromBase(string status)
+        {
+            return getIdAndName()
+                 + "/"
+                 + getIdAndName()
+                 + "_"
+                 + status;
+        }
+
+        private string getIdAndName()
+        {
+            return id + "_" + name;
+        }
+
     }
 }

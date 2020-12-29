@@ -21,12 +21,20 @@ public class BattleDataScript : MonoBehaviour
     AudioSource damagedSound;
     AudioSource defeatedSound;
 
+    private static readonly string BASE_PATH_ENEMY_SPRITE = "Enemy/DubTapMusic/";
+    private static readonly string BASE_PATH_SE = "Audio/SE/";
+    private static readonly string BASE_PATH_ENEMY_SE = BASE_PATH_SE + "Enemy/";
+
+    private static readonly string ENEMY_STATUS_NORMAL = "01";
+    private static readonly string ENEMY_STATUS_DAMAGED = "11";
+    private static readonly string ENEMY_STATUS_DEFEATED = "21";
+
     // Start is called before the first frame update
     void Start()
     {
         // SE準備
         damagedSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip damagedSoundClip = Resources.Load<AudioClip>("Audio/SE/Drum/BassDrum/BassDrum");
+        AudioClip damagedSoundClip = Resources.Load<AudioClip>(BASE_PATH_SE + "basic/drum/electronic/BassDrum_0001");
         damagedSound.clip = damagedSoundClip;
         defeatedSound = gameObject.AddComponent<AudioSource> ();
 
@@ -36,15 +44,16 @@ public class BattleDataScript : MonoBehaviour
 
         // TAKOYAKI
         enemy = new EnemyData();
-        enemy.name = "TAKOYAKI";
+        enemy.id = "0001";
+        enemy.name = "takoyaki";
         enemy.hp = 10;
         enemy.atk = 1;
         enemy.def = 1;
         // MEMO: 拡張子不要
-        enemy.normalSprite = Resources.Load<Sprite>("Enemies/DubTapMusic/0001_takoyaki/0001_takoyaki_01");
-        enemy.damagedSprite = Resources.Load<Sprite>("Enemies/DubTapMusic/0001_takoyaki/0001_takoyaki_11");
-        enemy.defeatedSprite = Resources.Load<Sprite>("Enemies/DubTapMusic/0001_takoyaki/0001_takoyaki_21");
-        enemy.defeatedSoundClip = Resources.Load<AudioClip>("Audio/SE/EnemyDefeated/0001");
+        enemy.normalSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_NORMAL));
+        enemy.damagedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DAMAGED));
+        enemy.defeatedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
+        enemy.defeatedSoundClip = Resources.Load<AudioClip>(BASE_PATH_ENEMY_SE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
 
         enemyList.Add(enemy);
         
