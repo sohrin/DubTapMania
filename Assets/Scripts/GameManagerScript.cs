@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DubTapMusic;
 
-public class BattleDataScript : MonoBehaviour
+public class GameManagerScript : MonoBehaviour
 {
     public EnemyData enemyData;
     private int enemyHp;
