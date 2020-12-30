@@ -7,13 +7,14 @@
 ・敵スプライトの作成
 ・敵スプライトのタイマー差し替え
 ・攻撃音、撃破音の再生
+・ビルド（手動）、DeployGate経由で動作確認
 
 ## TODO（なう）
-・CircleCI、DeployGateを回してAndroidで簡単にテストできるようにする。
+・戦闘曲のループ再生
 
 ## TODO（未）
+・タップエリアの設定（ひとまずボタンから画面全体。拡張可能なようにパネルを設定したほうがよさそう）
 ・背景画像の設定
-・戦闘曲のループ再生
 ・タップ時の攻撃エフェクト
 ・BPM設定
 ・タイトルシーンとバトルシーンに分ける。
@@ -24,6 +25,7 @@
 　　ストーリー情報（API化しないほうがよさそう）
 ・課金システム
 ・動画広告と音楽ゲームを絡める
+・CircleCIでのビルド・DeployGateでのデプロイの自動化
 
 
 
@@ -85,6 +87,12 @@ http://stepbystepweb.hatenablog.com/entry/2014/03/07/150204
 ・【Unity】BGM,SEをとりあえず再生したい人へ
 https://qiita.com/ioaxis/items/58ac66098545b3565dee
 
+・【Unity】Androidビルドが2019でめっちゃ簡単になってた件
+https://www.deathponta.com/entry/190510_unty2019_androidBuildEasy
+※Switch PlatSformをクリックして切り替えないとBuildボタンが押せないので注意。
+
+・【Unity】音声（BGM・SE）の再生・ループ・フェードアウトなどの設定方法を徹底解説！
+https://xr-hub.com/archives/18550
 
 
 
