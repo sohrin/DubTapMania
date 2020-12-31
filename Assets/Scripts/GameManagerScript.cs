@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using DubTapMusic;
 
 public class GameManagerScript : MonoBehaviour
@@ -22,7 +23,7 @@ public class GameManagerScript : MonoBehaviour
     AudioSource kickAtkSound;
     AudioSource punchAtkSound;
     AudioSource defeatedSound;
-    AudioSource bgmSound;
+    AudioSource battleBgmSound;
 
     int musicFrame = 0;
 
@@ -38,15 +39,15 @@ public class GameManagerScript : MonoBehaviour
     private const string ATK_CODE_KICK = "KICK";
     private const string ATK_CODE_PUNCH = "PUNCH";
     
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        // BGM準備
-        bgmSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip bgmSoundClip = Resources.Load<AudioClip>(BASE_PATH_BGM + "stage/1/DubTapMania_stage1");
-        bgmSound.clip = bgmSoundClip;
-        bgmSound.loop = true;
+        Debug.Log("GameManager.Awake() BEGIN.");
+
+        // 戦闘BGM準備
+        battleBgmSound = gameObject.AddComponent<AudioSource> ();
+        AudioClip battleBgmSoundClip = Resources.Load<AudioClip>(BASE_PATH_BGM + "stage/1/DubTapMania_stage1");
+        battleBgmSound.clip = battleBgmSoundClip;
+        battleBgmSound.loop = true;
 
         // SE準備
         kickAtkSound = gameObject.AddComponent<AudioSource> ();
@@ -81,12 +82,54 @@ public class GameManagerScript : MonoBehaviour
         // バトル中の敵を設定
         setEnemy();
 
-        // BGM再生
-        bgmSound.Play();
-
         // BGMフレーム初期化
         musicFrame = 0;
 
+        Debug.Log("GameManager.Awake() END.");
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Debug.Log("GameManager.Start() BEGIN.");
+
+        // MEMO: OnActiveSceneChanged動作時にbattleBgmSoundがnullになる件の対策。
+        DontDestroyOnLoad(this);
+
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+        Debug.Log("GameManager.Start() END.");
+    }
+
+    void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
+    {
+        Debug.Log(prevScene.name + "->"  + nextScene.name);
+
+        // 戦闘BGM再生（このシーンに遷移してきた時に再生開始）
+        battleBgmSound.Play();
+
+        // BattleSceneをアクティブに設定
+        Scene battleScene = SceneManager.GetSceneByName("BattleScene");
+        SceneManager.SetActiveScene(battleScene);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log(scene.name + " scene loaded");
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        Debug.Log(scene.name + " scene unloaded");
+    }
+
+    private bool isBattleSceneActive()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.LogFormat( "ActiveScene = {0}", scene.name );
+        return (scene.name == "BattleScene");
     }
 
     void setEnemy()
@@ -131,12 +174,33 @@ public class GameManagerScript : MonoBehaviour
 
     public void OnClickKickButton()
     {
+        Debug.Log("GameManager.OnClickKickButton() BEGIN.");
+
+        // BattleSceneに遷移して来ていない場合はUIを動作しないようにする（TitleSceneから押せてしまう件の対策）。
+        // TODO: もっとスマートな解決方法はないのか？シーンが3つ4つになってきたら判定が大変だしUIのOnClick処理すべてに判定が必要になる。
+        if (!isBattleSceneActive())
+        {
+            return;
+        }
+
         OnClickAttackButton(ATK_CODE_KICK);
+
+        Debug.Log("GameManager.OnClickKickButton() END.");
     }
 
     public void OnClickPunchButton()
     {
+        Debug.Log("GameManager.OnClickPunchButton() BEGIN.");
+
+        // BattleSceneに遷移して来ていない場合はUIを動作しないようにする（TitleSceneから押せてしまう件の対策）。
+        if (!isBattleSceneActive())
+        {
+            return;
+        }
+
         OnClickAttackButton(ATK_CODE_PUNCH);
+
+        Debug.Log("GameManager.OnClickPunchButton() END.");
     }
 
     public void OnClickAttackButton(string atkCode)

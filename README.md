@@ -8,11 +8,19 @@
 ・敵スプライトのタイマー差し替え
 ・攻撃音、撃破音の再生
 ・ビルド（手動）、DeployGate経由で動作確認
+・戦闘曲のループ再生（Unity標準）
 
 ## TODO（なう）
-・戦闘曲のループ再生
+
+
 
 ## TODO（未）
+・タイトルシーンの作成
+・タイトルシーンでのユーザ認証
+・セーブデータの保存（ローカル、ネット）
+・セーブデータの復元（ネット）
+・マスタデータの準備（ローカル）
+・マスタデータの準備（ネット）
 ・タップエリアの設定（ひとまずボタンから画面全体。拡張可能なようにパネルを設定したほうがよさそう）
 ・背景画像の設定
 ・タップ時の攻撃エフェクト
@@ -94,6 +102,37 @@ https://www.deathponta.com/entry/190510_unty2019_androidBuildEasy
 ・【Unity】音声（BGM・SE）の再生・ループ・フェードアウトなどの設定方法を徹底解説！
 https://xr-hub.com/archives/18550
 
+・新しいシーンを作成する - Unityプログラミング
+https://www.ipentec.com/document/unity-create-new-scene
+
+・初期シーンについて
+https://teratail.com/questions/24535
+
+・【Unity入門】超簡単！別のシーンへ切り替える方法
+https://www.sejuku.net/blog/49352
+
+・イベント関数の実行順序
+https://docs.unity3d.com/ja/2018.4/Manual/ExecutionOrder.html#FirstSceneLoad
+
+・複数のカメラを使用する
+https://docs.unity3d.com/ja/2018.4/Manual/MultipleCameras.html
+※複数のシーンにそれぞれカメラを用意している場合、Build Settingsの読み込み順ではなく、
+　カメラのDepthで初めにに表示するシーン制御可能。
+
+・SCENELOADEDで詰まる
+http://kabegiwa.sakura.ne.jp/wp/2016/10/13/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/sceneloaded%E3%81%A7%E8%A9%B0%E3%81%BE%E3%82%8B
+
+・【Unity】シーンが遷移したことを検知する
+https://nn-hokuson.hatenablog.com/entry/2017/05/29/204702
+
+・Unityで複数シーンにEventSystemを追加できない場合
+https://www.uowakame.com/unity-add-eventsystem/
+
+・【Unity】俺はまだSceneManagerを全力で使っていない！
+https://www.urablog.xyz/entry/2017/04/09/180155
+
+
+
 
 
 
@@ -112,3 +151,52 @@ https://qiita.com/4_mio_11/items/e7b0a5e65c89ac9d6d7f
 https://qiita.com/Takaaki_Ichijo/items/a774ecc3483e1761776f
 https://game.criware.jp/products/adx2-le/
 https://logmi.jp/tech/articles/321019
+
+・初心者が送る UnityでAPI通信講座
+https://qiita.com/pchan52/items/feca16ea98289ec31c65
+
+・Unity 設定情報(Config値)をスマートに管理する
+https://qiita.com/toRisouP/items/7765cf891a93bdcf65bc
+
+・【Unity】今から始めるAssetBundle【2019】
+https://light11.hatenadiary.com/entry/2019/06/24/212437
+
+・【Unity】どのシーンから起動しても共通の初期化を呼び出したい
+https://noracle.jp/unity-initialize-scene/
+
+
+
+
+
+
+
+■UnityがクラッシュしてHierarchyがUntitledのみになった場合の戻し方
+①シーンをドラッグ＆ドロップ
+②Untitledシーンを削除
+③Gameタブの画面設定がFree Aspectになっているので「16:9 Portrait (9:16)」を選び直す。
+
+
+
+
+
+
+■並行してやりたいこと
+・ゲーム用API（.NET 5とか）
+・認証（firebase？）
+
+
+■目的
+
+
+
+■ターゲット
+・全世界
+・ゲーセンの待ちの合間にリズムを養う人
+・タップゲーが好きな人
+・可愛さで非ゲーマーも狙う
+
+■ネタメモ
+・メタルたこやき：スカッ！スカッ！スカッ！カキーン！（41：避け：ニヤケ顔、残像）
+・たこぶね：銀だこのように集まったたこやき
+・各ステージに「ドラムモード」「ベースモード」「メロディモード（リフ、アルペジオ含む）」
+・敵ごとのピカグレ幅があってもいいかも。

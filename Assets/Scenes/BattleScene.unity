@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 514856399}
   - component: {fileID: 514856398}
   m_Layer: 0
-  m_Name: ButtonPunch
+  m_Name: PunchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 2072539143}
   - component: {fileID: 2072539142}
   m_Layer: 0
-  m_Name: ButtonKick
+  m_Name: KickButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
