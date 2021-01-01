@@ -45,7 +45,7 @@ public class BattleManagerScript : MonoBehaviour
 
         // 戦闘BGM準備
         battleBgmSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip battleBgmSoundClip = Resources.Load<AudioClip>(BASE_PATH_BGM + "stage/1/DubTapMania_stage1");
+        AudioClip battleBgmSoundClip = Resources.Load<AudioClip>(BASE_PATH_BGM + "stage/1/DubTapMania_stage1_BPM150");
         battleBgmSound.clip = battleBgmSoundClip;
         battleBgmSound.loop = true;
 

@@ -102,6 +102,9 @@ https://qiita.com/ioaxis/items/58ac66098545b3565dee
 https://www.deathponta.com/entry/190510_unty2019_androidBuildEasy
 ※Switch PlatSformをクリックして切り替えないとBuildボタンが押せないので注意。
 
+・Unity Andoroid実機でのビルドで文字やボタンが小さくなる場合の対処方法 (uGUI使用)
+https://monaski.hatenablog.com/entry/2015/05/11/015200
+
 ・【Unity】音声（BGM・SE）の再生・ループ・フェードアウトなどの設定方法を徹底解説！
 https://xr-hub.com/archives/18550
 
@@ -170,9 +173,9 @@ https://light11.hatenadiary.com/entry/2019/06/24/212437
 ・【Unity】どのシーンから起動しても共通の初期化を呼び出したい
 https://noracle.jp/unity-initialize-scene/
 
-
-
-
+・Unityで「There are 2 audio listeners in the scene」のエラーが出た場合
+https://qiita.com/sheltie-fusafusa/items/7f921a95e9ebc6c9e7d0
+https://qiita.com/unsoluble_sugar/items/80b8666c4196992d08ae
 
 
 
