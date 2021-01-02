@@ -51,6 +51,7 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 # バグ
 ・BattleManagerが2インスタンス存在している。（DontDestroyOnLoadの影響のようだが？）
 
+
 ## TODO（済）
 ・ボタンをクリックするとHPが減ってやっつけたら次の敵が出てくる
 ・敵データのクラス化
@@ -60,16 +61,16 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 ・ビルド（手動）、DeployGate経由で動作確認
 ・戦闘曲のループ再生（Unity標準）
 ・タイトルシーンの作成
+・TitleSceneでボタンのOnClickイベントが発火しない→EventSystemを追加したら解消した。
+・敵データのScriptableObject化
 
 ## TODO（なう）
-        // タイトルシーンをアクティブにする
-        Scene titleScene = SceneManager.GetSceneByName("TitleScene");
-        SceneManager.SetActiveScene(titleScene);
 
-・敵データのScriptableObject化
-・敵データをAPIから取得してScriptableObjectに流し込む
 
 ## TODO（未）
+・敵データのScriptableObjectをCSVインポート
+・UniRx導入
+・BPM設定から拍を判定
 ・タイトルシーンでのユーザ認証
 ・セーブデータの保存（ローカル、ネット）
 ・セーブデータの復元（ネット）
@@ -88,6 +89,7 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 ・課金システム
 ・動画広告と音楽ゲームを絡める
 ・CircleCIでのビルド・DeployGateでのデプロイの自動化
+・敵データをAPIから取得してScriptableObjectに流し込む
 
 
 
@@ -221,7 +223,14 @@ https://qiita.com/hkwid/items/c7453abac6aa6449e50b
 ・Macでバッチ（command）ファイルを作る方法
 https://qiita.com/TatsuyaOGth/items/f15bfa9aeb68d8ecfc67
 
+・【Unity】ScriptableObjectにマスタデータを持たせるメリットについて
+https://ekulabo.com/scriptableobject-for-master-data#outline__5
 
+
+・作成したScriptableObjectを呼び出す
+http://tsubakit1.hateblo.jp/entry/20140322/1395476579
+
+・【Unity】CSVからScriptableObjectにデータを流し込むEditor拡張サンプル
 
 
 
@@ -285,6 +294,9 @@ https://qiita.com/tatmos/items/67c9b5c7fbf221178f26
 
 ・MakeAtomCraftData
 https://github.com/tatmos/MakeAtomCraftData
+
+・AssetBundleを完全に理解する
+https://qiita.com/k7a/items/d27640ac0276214fc850
 
 
 

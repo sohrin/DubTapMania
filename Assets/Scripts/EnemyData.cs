@@ -2,7 +2,8 @@
 
 namespace DubTapMusic
 {
-    public class EnemyData
+    [CreateAssetMenu(menuName = "DubTapManiaScript/Create EnemyData")]
+    public class EnemyData : ScriptableObject
     {
         public int id;
         public string name;
@@ -13,15 +14,13 @@ namespace DubTapMusic
         public Sprite normalSprite;
         public Sprite damagedSprite;
         public Sprite defeatedSprite;
-        public AudioClip defeatedSoundClip;
 
         public string getResoursePathFromBase(string status)
         {
             return getIdAndName()
-                 + "/Enemy_"
+                 + "/"
                  + getIdAndName()
-                 + "_"
-                 + status;
+                 + status == null ? "" : "_" + status;
         }
 
         private string getIdAndName()

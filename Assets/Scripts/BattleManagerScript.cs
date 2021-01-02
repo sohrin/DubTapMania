@@ -34,7 +34,7 @@ public class BattleManagerScript : MonoBehaviour
     int musicFrame = 0;
 
     // MEMO: スプライトのファイルパス指定時は拡張子不要。
-    private static readonly string BASE_PATH_ENEMY_SPRITE = "EnemySprite/DubTapMusic/";
+    private static readonly string BASE_PATH_ENEMY = "Enemy/DubTapMusic/";
     private static readonly string ENEMY_STATUS_NORMAL = "01";
     private static readonly string ENEMY_STATUS_DAMAGED = "11";
     private static readonly string ENEMY_STATUS_DEFEATED = "21";
@@ -69,28 +69,12 @@ public class BattleManagerScript : MonoBehaviour
 
         // 敵データ準備
         enemyList = new List<EnemyData>();
-        EnemyData enemy = null;
+        EnemyData enemy;
 
-        enemy = new EnemyData();
-        enemy.id = 1;
-        enemy.name = "takoyaki";
-        enemy.hp = 8;
-        enemy.atk = 1;
-        enemy.def = 1;
-        enemy.normalSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_NORMAL));
-        enemy.damagedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DAMAGED));
-        enemy.defeatedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
+        enemy = Resources.Load<EnemyData>(BASE_PATH_ENEMY + "0001_takoyaki/0001_takoyaki");
         enemyList.Add(enemy);
 
-        enemy = new EnemyData();
-        enemy.id = 2;
-        enemy.name = "pizzicato";
-        enemy.hp = 10;
-        enemy.atk = 2;
-        enemy.def = 2;
-        enemy.normalSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_NORMAL));
-        enemy.damagedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DAMAGED));
-        enemy.defeatedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
+        enemy = Resources.Load<EnemyData>(BASE_PATH_ENEMY + "0002_pizzicato/0002_pizzicato");
         enemyList.Add(enemy);
         
         // バトル中の敵を設定
@@ -235,7 +219,8 @@ public class BattleManagerScript : MonoBehaviour
         {
             stockDamage++;
         }
-        else {
+        else
+        {
             enemyHp--;
             hpText.text = enemyHp.ToString();
             if (enemyHp == 0)
