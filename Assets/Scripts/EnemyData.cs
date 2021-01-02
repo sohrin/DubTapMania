@@ -2,9 +2,9 @@
 
 namespace DubTapMusic
 {
-public class EnemyData
+    public class EnemyData
     {
-        public string id;
+        public int id;
         public string name;
         // TODO: 表示名(displayName)、多言語対応
         public int hp;
@@ -18,7 +18,7 @@ public class EnemyData
         public string getResoursePathFromBase(string status)
         {
             return getIdAndName()
-                 + "/"
+                 + "/Enemy_"
                  + getIdAndName()
                  + "_"
                  + status;
@@ -26,7 +26,12 @@ public class EnemyData
 
         private string getIdAndName()
         {
-            return id + "_" + name;
+            return id.ToString("0000") + "_" + name;
+        }
+
+        public int getIdIdx()
+        {
+            return id - 1;
         }
 
     }

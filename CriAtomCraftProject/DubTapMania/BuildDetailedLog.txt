@@ -1,0 +1,71 @@
+===================== ビルド開始 (2021-01-02 17:30)===================== 
+ビルド可能かをチェックしています...
+完了
+ACFをビルド中
+ACFファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/DubTapMania.acf"
+ACFファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/inGamePreview/DubTapMania.acf"
+完了
+[1 / 3] ビルド中 [Public] EnemySeCueSheet
+エンコード準備中です...
+エンコード成功 "/Enemy_0001_takoyaki_21.wav"
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/EnemySeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/EnemySeCueSheet.acb"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/EnemySeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/EnemySeCueSheet.acb"
+完了
+[2 / 3] ビルド中 [Public] BattleBgmStage1CueSheet
+エンコード準備中です...
+エンコード成功 "/BattleBgmStage_1.wav"
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/BattleBgmStage1CueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/BattleBgmStage1CueSheet.acb"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/BattleBgmStage1CueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/BattleBgmStage1CueSheet.acb"
+完了
+[3 / 3] ビルド中 [Public] AttackSeCueSheet
+エンコード準備中です...
+エンコード成功 "/BassDrum_0001.wav"
+エンコード成功 "/Snare_0001.wav"
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/AttackSeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/AttackSeCueSheet.acb"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/AttackSeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/AttackSeCueSheet.acb"
+完了
+ACFをビルド中
+ACFファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/DubTapMania.acf"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/DubTapMania.acf"	"4416Byte"	"2021/01/02 17:30:55"
+ACFファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/inGamePreview/DubTapMania.acf"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/inGamePreview/DubTapMania.acf"	"65536Byte"	"2021/01/02 17:30:55"
+[1 / 3] ビルド中 [Public] EnemySeCueSheet
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/EnemySeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/EnemySeCueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/EnemySeCueSheet.acb"	"47680Byte"	"2021/01/02 17:30:55"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/EnemySeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/EnemySeCueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/EnemySeCueSheet.acb"	"50560Byte"	"2021/01/02 17:30:55"
+[2 / 3] ビルド中 [Public] BattleBgmStage1CueSheet
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/BattleBgmStage1CueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/BattleBgmStage1CueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/BattleBgmStage1CueSheet.acb"	"192256Byte"	"2021/01/02 17:30:55"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/BattleBgmStage1CueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/BattleBgmStage1CueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/BattleBgmStage1CueSheet.acb"	"195136Byte"	"2021/01/02 17:30:55"
+[3 / 3] ビルド中 [Public] AttackSeCueSheet
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/AttackSeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/AttackSeCueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/AttackSeCueSheet.acb"	"96192Byte"	"2021/01/02 17:30:55"
+エンコード準備中です...
+ACB埋め込み用AWBを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/DubTapMania_Cache/Public/BattleWorkUnit/inGamePreview/AttackSeCueSheet.awbTmp"
+ACBファイルを生成しました。 "/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/AttackSeCueSheet.acb"
+OK		"/Users/str2653z/Documents/_dev/unity/DubTapMania/CriAtomCraftProject/DubTapMania/Public/BattleWorkUnit/inGamePreview/AttackSeCueSheet.acb"	"99840Byte"	"2021/01/02 17:30:55"
+全てのビルドが完了しました。
+ビルド時間 : 00:00:00.899
+
+

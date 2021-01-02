@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Orca XML File Format -->
+<OrcaTrees ObjectTypeExpression="Full" BinaryEncodingType="Base64" FileVersion="3" FileRevision="0">
+  <OrcaTree OrcaName="(no name)">
+    <Orca OrcaName="BattleWorkUnit_MaterialInfo" FormatVersion="Ver.1.02.00" MaterialRootPath="Materials" VersionInfoV3="Ver.3.40.17" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoMaterialInfoFile">
+      <Orca OrcaName="MaterialRootFolder" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveformFolder">
+        <Orca OrcaName="BassDrum_0001.wav" Channels="2" EncodeFileSize="44426" ReloopEnd="65556" ResamplingRate="44100" SampleFrames="65556" SamplingRate="44100" SourceFileSize="263864" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+        <Orca OrcaName="Snare_0001.wav" Channels="2" EncodeFileSize="47836" ReloopEnd="70560" ResamplingRate="44100" SampleFrames="70560" SamplingRate="44100" SourceFileSize="283894" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+        <Orca OrcaName="BattleBgmStage_1.wav" BitsPerSamples="24" Channels="2" EncodeFileSize="188328" ReloopEnd="282240" ResamplingRate="44100" SampleFrames="282240" SamplingRate="44100" SourceFileSize="1696792" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+        <Orca OrcaName="Enemy_0001_takoyaki_21.wav" Channels="2" EncodeFileSize="43744" ReloopEnd="65333" ResamplingRate="44100" SampleFrames="65333" SamplingRate="44100" SourceFileSize="262964" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+        <Orca OrcaName="Enemy_0002_pizzicato_21.wav" Channels="2" ReloopEnd="70560" ResamplingRate="44100" SampleFrames="70560" SamplingRate="44100" SourceFileSize="283894" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+      </Orca>
+    </Orca>
+  </OrcaTree>
+</OrcaTrees>
+<!-- Copyright (c) CRI Middleware Co.,LTD. -->
+<!-- end of document -->

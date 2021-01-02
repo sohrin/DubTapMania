@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DubTapMusic;
+using DubTapMania_acf;
 
 public class BattleManagerScript : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class BattleManagerScript : MonoBehaviour
     private int enemyHp;
     private int enemyIdx = 0;
     private List<EnemyData> enemyList;
-    private static readonly int ENEMY_LIST_MAX_SIZE = 1;
     public Text hpText;
     public Text enemyNameText;
     int stockDamage = 0;
@@ -20,63 +20,77 @@ public class BattleManagerScript : MonoBehaviour
     int damagedRemainingFrame = 0;
     int defeatedRemainingFrame = 0;
 
-    AudioSource kickAtkSound;
-    AudioSource punchAtkSound;
-    AudioSource defeatedSound;
-    AudioSource battleBgmSound;
+    CriAtomSource battleBgmSound;
+    CriAtomSource attackSeSound;
+    CriAtomSource enemySeSound;
+    int enemyDefeatedSoundIdx = 0;
+
+    private static readonly string ACF_FILE_PATH_FROM_STREAMING_ASSETS  = "DubTapMania.acf";
+    private static readonly string ACB_FILE_NAME_SUFFIX = "CueSheet.acb";
+    private static readonly string CUE_SHEET_NAME_BATTLE_BGM_STAGE1 = "BattleBgmStage1";
+    private static readonly string CUE_SHEET_NAME_ATTACK_SE = "AttackSe";
+    private static readonly string CUE_SHEET_NAME_ENEMY_DEFEATED_SE = "EnemyDefeatedSe";
 
     int musicFrame = 0;
 
-    private static readonly string BASE_PATH_ENEMY_SPRITE = "Enemy/DubTapMusic/";
-    private static readonly string BASE_PATH_SE = "Audio/SE/";
-    private static readonly string BASE_PATH_ENEMY_SE = BASE_PATH_SE + "Enemy/";
-    private static readonly string BASE_PATH_BGM = "Audio/BGM/";
-
+    // MEMO: スプライトのファイルパス指定時は拡張子不要。
+    private static readonly string BASE_PATH_ENEMY_SPRITE = "EnemySprite/DubTapMusic/";
     private static readonly string ENEMY_STATUS_NORMAL = "01";
     private static readonly string ENEMY_STATUS_DAMAGED = "11";
     private static readonly string ENEMY_STATUS_DEFEATED = "21";
 
+    public enum AtkCode
+    {
+        KICK,
+        PUNCH
+    }
     private const string ATK_CODE_KICK = "KICK";
     private const string ATK_CODE_PUNCH = "PUNCH";
+
+    private CriAtomSource createCriAtomSource(string cueSheetName, bool loopFlg)
+    {
+        CriAtom.AddCueSheet(cueSheetName, cueSheetName + ACB_FILE_NAME_SUFFIX, null, null);
+        CriAtomSource criAtomSource = new GameObject().AddComponent<CriAtomSource>();
+        criAtomSource.loop = loopFlg;
+        criAtomSource.cueSheet = cueSheetName;
+        return criAtomSource;
+    }
     
     void Awake()
     {
-        Debug.Log("GameManager.Awake() BEGIN.");
+        Debug.Log("BattleManagerScript.Awake() BEGIN.");
 
-        // 戦闘BGM準備
-        battleBgmSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip battleBgmSoundClip = Resources.Load<AudioClip>(BASE_PATH_BGM + "stage/1/DubTapMania_stage1_BPM150");
-        battleBgmSound.clip = battleBgmSoundClip;
-        battleBgmSound.loop = true;
-
-        // SE準備
-        kickAtkSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip kickAtkSoundClip = Resources.Load<AudioClip>(BASE_PATH_SE + "basic/drum/electronic/BassDrum_0001");
-        kickAtkSound.clip = kickAtkSoundClip;
-
-        punchAtkSound = gameObject.AddComponent<AudioSource> ();
-        AudioClip punchAtkSoundClip = Resources.Load<AudioClip>(BASE_PATH_SE + "basic/drum/electronic/Snare_0001");
-        punchAtkSound.clip = punchAtkSoundClip;
-
-        defeatedSound = gameObject.AddComponent<AudioSource> ();
+        // 「CRI ADX2」設定
+        string path = CriWare.streamingAssetsPath + "/" + ACF_FILE_PATH_FROM_STREAMING_ASSETS;
+        CriAtomEx.RegisterAcf(null, path);
+        new GameObject().AddComponent<CriAtom>();
+        attackSeSound = createCriAtomSource(CUE_SHEET_NAME_ATTACK_SE, false);
+        enemySeSound = createCriAtomSource(CUE_SHEET_NAME_ENEMY_DEFEATED_SE, false);
 
         // 敵データ準備
         enemyList = new List<EnemyData>();
         EnemyData enemy = null;
 
-        // TAKOYAKI
         enemy = new EnemyData();
-        enemy.id = "0001";
+        enemy.id = 1;
         enemy.name = "takoyaki";
         enemy.hp = 8;
         enemy.atk = 1;
         enemy.def = 1;
-        // MEMO: 拡張子不要
         enemy.normalSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_NORMAL));
         enemy.damagedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DAMAGED));
         enemy.defeatedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
-        enemy.defeatedSoundClip = Resources.Load<AudioClip>(BASE_PATH_ENEMY_SE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
+        enemyList.Add(enemy);
 
+        enemy = new EnemyData();
+        enemy.id = 2;
+        enemy.name = "pizzicato";
+        enemy.hp = 10;
+        enemy.atk = 2;
+        enemy.def = 2;
+        enemy.normalSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_NORMAL));
+        enemy.damagedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DAMAGED));
+        enemy.defeatedSprite = Resources.Load<Sprite>(BASE_PATH_ENEMY_SPRITE + enemy.getResoursePathFromBase(ENEMY_STATUS_DEFEATED));
         enemyList.Add(enemy);
         
         // バトル中の敵を設定
@@ -85,13 +99,13 @@ public class BattleManagerScript : MonoBehaviour
         // BGMフレーム初期化
         musicFrame = 0;
 
-        Debug.Log("GameManager.Awake() END.");
+        Debug.Log("BattleManagerScript.Awake() END.");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("GameManager.Start() BEGIN.");
+        Debug.Log("BattleManagerScript.Start() BEGIN.");
 
         // MEMO: OnActiveSceneChanged動作時にbattleBgmSoundがnullになる件の対策。
         DontDestroyOnLoad(this);
@@ -100,7 +114,7 @@ public class BattleManagerScript : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
-        Debug.Log("GameManager.Start() END.");
+        Debug.Log("BattleManagerScript.Start() END.");
     }
 
     void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
@@ -108,7 +122,9 @@ public class BattleManagerScript : MonoBehaviour
         Debug.Log(prevScene.name + "->"  + nextScene.name);
 
         // 戦闘BGM再生（このシーンに遷移してきた時に再生開始）
-        battleBgmSound.Play();
+        // MEMO: シーン遷移時に再生する音はOnActiveSceneChangedで本メソッドを呼び出してメンバに代入しておかないと何故かエラーが発生する（AwakeやStartだとダメ）。シーン遷移後ならAwake内でOK。
+        battleBgmSound = createCriAtomSource(CUE_SHEET_NAME_BATTLE_BGM_STAGE1, true);
+        battleBgmSound.Play(0);
 
         // BattleSceneをアクティブに設定
         Scene battleScene = SceneManager.GetSceneByName("BattleScene");
@@ -145,7 +161,7 @@ public class BattleManagerScript : MonoBehaviour
         }
         stockDamage = 0;
         hpText.text = enemyHp.ToString();
-        defeatedSound.clip = enemyData.defeatedSoundClip;
+        enemyDefeatedSoundIdx = enemyData.getIdIdx();
     }
 
     // Update is called once per frame
@@ -160,7 +176,7 @@ public class BattleManagerScript : MonoBehaviour
             if (defeatedRemainingFrame == 0)
             {
                 enemyIdx++;
-                if (enemyIdx > ENEMY_LIST_MAX_SIZE - 1)
+                if (enemyIdx > enemyList.Count - 1)
                 {
                     enemyIdx = 0;
                 }
@@ -178,9 +194,9 @@ public class BattleManagerScript : MonoBehaviour
         }
     }
 
-    public void OnClickKickButton()
+    public void OnPointerDownKickButton()
     {
-        Debug.Log("GameManager.OnClickKickButton() BEGIN.");
+        Debug.Log("BattleManagerScript.OnPointerDownKickButton() BEGIN.");
 
         // BattleSceneに遷移して来ていない場合はUIを動作しないようにする（TitleSceneから押せてしまう件の対策）。
         // TODO: もっとスマートな解決方法はないのか？シーンが3つ4つになってきたら判定が大変だしUIのOnClick処理すべてに判定が必要になる。
@@ -189,14 +205,14 @@ public class BattleManagerScript : MonoBehaviour
             return;
         }
 
-        OnClickAttackButton(ATK_CODE_KICK);
+        AttackEnemy(AtkCode.KICK);
 
-        Debug.Log("GameManager.OnClickKickButton() END.");
+        Debug.Log("BattleManagerScript.OnPointerDownKickButton() END.");
     }
 
-    public void OnClickPunchButton()
+    public void OnPointerDownPunchButton()
     {
-        Debug.Log("GameManager.OnClickPunchButton() BEGIN.");
+        Debug.Log("BattleManagerScript.OnPointerDownPunchButton() BEGIN.");
 
         // BattleSceneに遷移して来ていない場合はUIを動作しないようにする（TitleSceneから押せてしまう件の対策）。
         if (!isBattleSceneActive())
@@ -204,16 +220,19 @@ public class BattleManagerScript : MonoBehaviour
             return;
         }
 
-        OnClickAttackButton(ATK_CODE_PUNCH);
+        AttackEnemy(AtkCode.PUNCH);
 
-        Debug.Log("GameManager.OnClickPunchButton() END.");
+        Debug.Log("BattleManagerScript.OnPointerDownPunchButton() END.");
     }
 
-    public void OnClickAttackButton(string atkCode)
+    public void AttackEnemy(AtkCode atkCode)
     {
+        Debug.Log("BattleManagerScript.OnPointerDownPunchButton() BEGIN. atkCode:[" + atkCode + "]");
+
+        PlayAtkSound(atkCode);
+
         if (defeatedRemainingFrame > 0) 
         {
-            PlayAtkSound(atkCode);
             stockDamage++;
         }
         else {
@@ -221,30 +240,69 @@ public class BattleManagerScript : MonoBehaviour
             hpText.text = enemyHp.ToString();
             if (enemyHp == 0)
             {
-                defeatedSound.Play();
+                enemySeSound.Play(enemyDefeatedSoundIdx);
                 defeatedRemainingFrame = 90;
                 mainSpriteRenderer.sprite = enemyData.defeatedSprite;
             }
             else
             {
-                PlayAtkSound(atkCode);
                 damagedRemainingFrame = 20;
                 mainSpriteRenderer.sprite = enemyData.damagedSprite;
             }
         }
+
+        Debug.Log("BattleManagerScript.OnPointerDownPunchButton() END.");
     }
 
-    private void PlayAtkSound(string atkCode)
+    private void PlayAtkSound(AtkCode atkCode)
     {
         switch (atkCode)
         {
-            case ATK_CODE_KICK:
-                kickAtkSound.Play();
+            case AtkCode.KICK:
+                attackSeSound.Play(0);
                 break;
-            case ATK_CODE_PUNCH:
-                punchAtkSound.Play();
+            case AtkCode.PUNCH:
+                attackSeSound.Play(1);
                 break;
         }
     }
+
+    // /// <summary>
+    // /// ＜使用例＞
+    // /// ・メンバ
+    // /// CriAtomExPlayer battleBgmSound;
+    // /// CriAtomExWaveVoicePool waveVoicePool;
+    // /// private static readonly int CRI_ATOM_EX_PLAYER_MAX_PATH = 256;
+    // /// private static readonly int CRI_ATOM_EX_PLAYER_MAX_PATH_STRINGS = 1;
+    // /// private static readonly uint VOICE_POOL_ID_BATTLE_BGM = 0x00000011;
+    // /// ・OnDestroyメソッド内
+    // /// if (battleBgmSound != null) {
+    // ///     battleBgmSound.Dispose();
+    // /// }
+    // /// ・使用箇所
+    // /// battleBgmSound = createWavePlayer(VOICE_POOL_ID_BATTLE_BGM, BASE_PATH_BGM + "stage/1/DubTapMania_stage1_BPM150.wav", true);
+    // /// battleBgmSound.Start();
+    // /// </summary>
+    // private CriAtomExPlayer createWavePlayer(uint voicePoolId, string pathFromStreamingAssets, bool loopFlg)
+    // {
+    //     // MEMO: https://game.criware.jp/manual/unity_plugin/latest/contents/classCriAtomExWaveVoicePool.html
+    //     waveVoicePool = new CriAtomExWaveVoicePool(
+    //         1,                    // int 	numVoices,
+    //         2,                      // int 	maxChannels,
+    //         44100,                  // int 	maxSamplingRate,
+    //         true,                   // bool 	streamingFlag,
+    //         voicePoolId      // uint 	identifier = 0 
+    //     );
+    //
+    //     CriAtomExPlayer player = new CriAtomExPlayer(CRI_ATOM_EX_PLAYER_MAX_PATH, CRI_ATOM_EX_PLAYER_MAX_PATH_STRINGS);
+    //     player.SetVoicePoolIdentifier(voicePoolId);
+    //     player.SetFile(null, CriWare.streamingAssetsPath + "/" + pathFromStreamingAssets);
+    //     player.SetFormat(CriAtomEx.Format.WAVE);
+    //     player.SetNumChannels(2);
+    //     player.SetSamplingRate(44100);
+    //     player.Loop(loopFlg);
+    //     return player;
+    // }
+
 }
 

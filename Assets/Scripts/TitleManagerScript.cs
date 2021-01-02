@@ -10,21 +10,39 @@ public class TitleManagerScript : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("TitleManager.Awake() BEGIN.");
+        Debug.Log("TitleManagerScript.Awake() BEGIN.");
 
-        Debug.Log("TitleManager.Awake() END.");
+        // acf設定
+        string path = CriWare.streamingAssetsPath + "/DubTapMania.acf";
+        CriAtomEx.RegisterAcf(null, path);
+
+        // CriAtom作成
+        new GameObject().AddComponent<CriAtom>();
+
+        // BGM acb追加
+        CriAtom.AddCueSheet("AttackSe", "AttackSeCueSheet.acb", null, null);
+        // SE acb追加
+        CriAtom.AddCueSheet("EnemySe", "EnemySeCueSheet.acb", null, null);
+
+        // SEを鳴らす
+        CriAtomSource se = new GameObject().AddComponent<CriAtomSource>();
+        se.loop = false;
+        se.cueSheet = "EnemySe";
+        se.Play(0);
+
+        Debug.Log("TitleManagerScript.Awake() END.");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("TitleManager.Start() BEGIN.");
+        Debug.Log("TitleManagerScript.Start() BEGIN.");
 
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;   
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
 
-        Debug.Log("TitleManager.Start() END.");
+        Debug.Log("TitleManagerScript.Start() END.");
     }
 
     void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
@@ -50,20 +68,26 @@ public class TitleManagerScript : MonoBehaviour
 
     public void OnClickPlayButton()
     {
-        Debug.Log("TitleManager.OnClickPlayButton() BEGIN.");
+        Debug.Log("TitleManagerScript.OnClickPlayButton() BEGIN.");
+
+        // BGMを鳴らす
+        CriAtomSource bgm = new GameObject().AddComponent<CriAtomSource>();
+        bgm.loop = true;
+        bgm.cueSheet = "AttackSe";
+        bgm.Play(0);
 
         playButtonText.text = "Wait...";
         Invoke("ChangeScene", 0.5f);
 
-        Debug.Log("TitleManager.OnClickPlayButton() END.");
+        Debug.Log("TitleManagerScript.OnClickPlayButton() END.");
     }
 
     void ChangeScene()
     {
-        Debug.Log("TitleManager.ChangeScene() BEGIN.");
+        Debug.Log("TitleManagerScript.ChangeScene() BEGIN.");
 
         SceneManager.LoadScene("BattleScene");
 
-        Debug.Log("TitleManager.ChangeScene() END.");
+        Debug.Log("TitleManagerScript.ChangeScene() END.");
     }
 }
