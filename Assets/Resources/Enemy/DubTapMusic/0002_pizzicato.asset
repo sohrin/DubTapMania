@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 318b90c3b233d4d43bcf13ce11d8a71d, type: 3}
-  m_Name: 0002_pizz
+  m_Name: 0002_pizzicato
   m_EditorClassIdentifier: 
   id: 0
   name: 
@@ -20,4 +20,3 @@ MonoBehaviour:
   normalSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
   defeatedSprite: {fileID: 0}
-  defeatedSoundClip: {fileID: 0}

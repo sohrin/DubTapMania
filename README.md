@@ -43,10 +43,8 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 1. ワークユニット、キュー、ファイル名を設計する（ひとまずワークユニットはシーン毎等の大きな分け、キューはBGMは1つ・SEはある程度の分けて1つ、ファイル名はC#コード生成時がうまくいかなくなるので数字から始めないこと）
 2. 「/OriginalSound/【ワークユニット名】/【キュー名】」にwavファイルを格納する。
 3. CriAtomCraft上でワークユニット、キューを作成し、追加wavファイルをドロップする。シーンを追加してアクティブを切り替える流れ。
-
 ※以下URLを見ると、フォルダドロップでもいけるっぽい？
 https://qiita.com/tatmos/items/858ec7f6507b6abd015c
-
 4. 「ビルド」メニュー＞Atomキューシートバイナリ→全シートチェック、追加出力とオプションはすべてチェックし、「ビルド」ボタンを押下する。ビルド完了、エラーや警告が発生していないこと。また、詳細なビルドログをCriAtomCraftプロジェクトフォルダ直下に保存しておく。ファイル名は「BuildDetailedLog.txt」とする。
 5. 「【Unityプロジェクトフォルダ】/Tools/CopyCriAtomCraftBin2Assets/CopyCriAtomCraftBin2Assets.command」（mac）用を実行し、acfファイル、acbファイル、csファイルをクリーン・コピーする。
 6. Unityのウィンドウをアクティブにし、Assetsをインポートさせる（metaファイルが生成される）。
@@ -68,20 +66,33 @@ https://qiita.com/tatmos/items/858ec7f6507b6abd015c
 ・タイトルシーンの作成
 ・TitleSceneでボタンのOnClickイベントが発火しない→EventSystemを追加したら解消した。
 ・敵データのScriptableObject化
+・UniRx導入
+・CRIADX2のビート同期を使ってリズムに合わせた演出をつける
+https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
+※①タイムラインで右クリック＞ビート同期情報の作成、②インスペクターでBPM設定、ビートパターン設定（各拍でイベント発生する場合、全ビートをクリックし明るくする）
+※CriAtomSource側でループさせてると1ループ目しか拍イベントが発生しない。シーケンスループマーカーでループさせ、CriAtomSource側のループ設定はfalseにしておく必要あり。
+https://game.criware.jp/manual/adx2_tool/latest/criatom_tools_atomcraft_sequence_loop_marker.html
 
 ## TODO（なう）
+・攻撃時のタイミング判定（曲再生時からの時間で判定）
+【Unity】音ゲーの仕組みを学び「〇〇の達人」をUnityで作る　パート1
+https://qiita.com/kousaku-maron/items/42f801df2b87e37b1d91
+
+・ユーザ登録、ユーザ認証（PlayFab利用）
+
+・using DubTapMania_acf;
 ・倒した敵の数をカウントするようにする。
 ・セーブデータの保存（ローカル）
 
 ## TODO（未）
-・CRIADX2のビート同期を使ってリズムに合わせた演出をつける
-https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
 ・セーブデータの保存（PlayFab）
 ・セーブデータの復元（PlayFab）
-・UniRx導入
+
 ・BPM設定から拍を判定
 ・タイトルシーンでのユーザ認証
 ・音声の読み込み方の見直し
+【Unity検証】AwakeとStartとOnEnableの呼ばれ方を調べてみた
+https://dkrevel.com/unity-explain/how-to-call-start-awake-onenable/
 Unity + ADX2におけるサウンドデータの読み込みと破棄
 https://qiita.com/Takaaki_Ichijo/items/c7e14234f799fdca3e68
 あんスタ！！MusicにおけるCRI ADX2活用事例（後編）
@@ -93,7 +104,6 @@ https://qiita.com/k7a/items/fe29f3edec3063f03a25
 ・タップ時の攻撃エフェクト
 ・BPM設定
 ・タイトルシーンとバトルシーンに分ける。
-・認証
 ・マスタデータ取得APIとの通信
 　　敵データ（ドロップ情報含む）
 　　アイテムデータ（音と絡める）
@@ -236,14 +246,34 @@ https://qiita.com/hkwid/items/c7453abac6aa6449e50b
 ・Macでバッチ（command）ファイルを作る方法
 https://qiita.com/TatsuyaOGth/items/f15bfa9aeb68d8ecfc67
 
+・【Unity】ScriptableObjectってなんなん? って時に読む記事【解説】
+https://ekulabo.com/about-scriptable-object
+
 ・【Unity】ScriptableObjectにマスタデータを持たせるメリットについて
 https://ekulabo.com/scriptableobject-for-master-data#outline__5
-
 
 ・作成したScriptableObjectを呼び出す
 http://tsubakit1.hateblo.jp/entry/20140322/1395476579
 
-・【Unity】CSVからScriptableObjectにデータを流し込むEditor拡張サンプル
+・.gitignoreで.DS_Storeを削除しよう
+https://qiita.com/takashimelon/items/def769aaaa1d41cc44d4
+
+・Unityのアセットストア（AssetStore）を使う方法【初心者向け】
+https://techacademy.jp/magazine/2222
+
+・【さちゃでもわかる】UniRx導入編
+https://qiita.com/S4ch1mos/items/162767fa59296f74ced0
+
+・UniRx入門 その4 -Updateをストリームに変換する方法とメリット-
+https://qiita.com/toRisouP/items/30c576c7b0a99f41fb87
+
+・UnityのUniRx逆引き辞典 (自作)
+https://www.shibuya24.info/entry/2015/09/23/181052#uGUI%E3%81%AE%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%8C%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%95%E3%82%8C%E3%81%9F%E6%99%82%E3%81%AB%E4%BD%95%E3%81%8B%E3%81%99%E3%82%8B
+
+・CRIADX2のビート同期を使ってリズムに合わせた演出をつける
+https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
+
+
 
 
 
@@ -329,7 +359,14 @@ https://qiita.com/Takaaki_Ichijo/items/faf96c22740ff5a7587d
 ・ADX2 for Unityで楽曲がリアルタイムに変化するBGMを再生（インタラクティブミュージック）
 https://qiita.com/Takaaki_Ichijo/items/4ffd0fa28f196089defd
 
+・【Unity】CSVからScriptableObjectにデータを流し込むEditor拡張サンプル
+https://ekulabo.com/csv-to-scriptable-object
 
+・Atom Craft ロボット編
+https://game.criware.jp/learn/tutorial/atomcraft/
+
+・ゲーム構築を劇的にスマートにするScriptable Objectの 3つの活用方法
+https://forpro.unity3d.jp/unity_pro_tips/2019/07/27/57/
 
 
 

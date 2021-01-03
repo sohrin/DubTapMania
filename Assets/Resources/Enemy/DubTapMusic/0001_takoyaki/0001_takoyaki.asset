@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 318b90c3b233d4d43bcf13ce11d8a71d, type: 3}
-  m_Name: Enemy_0001_takoyaki
+  m_Name: 0001_takoyaki
   m_EditorClassIdentifier: 
-  id: 0
-  name: 
-  hp: 0
-  atk: 0
-  def: 0
-  normalSprite: {fileID: 0}
-  damagedSprite: {fileID: 0}
-  defeatedSprite: {fileID: 0}
-  defeatedSoundClip: {fileID: 0}
+  id: 1
+  name: takoyaki
+  hp: 8
+  atk: 1
+  def: 1
+  normalSprite: {fileID: 21300000, guid: e3abb8ce1dc04464ba3f46dfc2a55f86, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 179399b112cf7440899b4231633ce130, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: 8e6107df3d18145669e6ee3c7d814895, type: 3}

@@ -8,11 +8,13 @@
       </Orca>
       <Orca OrcaName="CueSheetFolder" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheetFolder">
         <Orca OrcaName="BattleWorkUnit" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheetSubFolder">
-          <Orca OrcaName="BattleBgmStage1CueSheet" AwbHash="16238" LastOutputCueSheetSize="195136" OoUniqId="2d0c6bf7-63b5-41fb-8014-832ef552f23e" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
+          <Orca OrcaName="BattleBgmStage1CueSheet" AwbHash="16238" LastOutputCueSheetSize="195328" OoUniqId="2d0c6bf7-63b5-41fb-8014-832ef552f23e" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
             <Orca OrcaName="BattleBgmStage_1" CueID="0" Pos3dDistanceMax="500" Pos3dDistanceMin="1" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
               <Orca OrcaName="Track_BattleBgmStage_1" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
                 <Orca OrcaName="BattleBgmStage_1.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/BattleWorkUnit_MaterialInfo/MaterialRootFolder/BattleBgmStage_1.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform"/>
               </Orca>
+              <Orca OrcaName="BeatSyncParam" BeatListStr="11111111111111111111111111111111" Bpm="150" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBeatSyncParam"/>
+              <Orca OrcaName="" EventEnableFlag="True" EventEndTime="6400" EventStartTime="0" InfinityLoopFlag="True" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoEventLoop"/>
             </Orca>
           </Orca>
           <Orca OrcaName="AttackSeCueSheet" AwbHash="50205" LastOutputCueSheetSize="99840" OoUniqId="5a71b6bb-4cf5-4acf-8601-a3281c44a01b" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
@@ -27,7 +29,7 @@
               </Orca>
             </Orca>
           </Orca>
-          <Orca OrcaName="EnemyDefeatedSeCueSheet" AwbHash="30239" LastOutputCueSheetSize="50592" OoUniqId="cf871b9e-dd39-45cc-9b5a-57878e1afa90" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
+          <Orca OrcaName="EnemyDefeatedSeCueSheet" AwbHash="30239" LastOutputCueSheetSize="99200" OoUniqId="cf871b9e-dd39-45cc-9b5a-57878e1afa90" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
             <Orca OrcaName="Enemy_0001_takoyaki_21" CueID="0" Pos3dDistanceMax="500" Pos3dDistanceMin="1" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
               <Orca OrcaName="Track_Enemy_0001_takoyaki_21" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
                 <Orca OrcaName="Enemy_0001_takoyaki_21.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/BattleWorkUnit_MaterialInfo/MaterialRootFolder/Enemy_0001_takoyaki_21.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform"/>

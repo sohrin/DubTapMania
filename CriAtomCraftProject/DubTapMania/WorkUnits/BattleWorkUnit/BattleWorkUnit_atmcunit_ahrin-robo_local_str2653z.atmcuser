@@ -6,8 +6,7 @@
       <Orca OrcaName="BattleWorkUnit" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
       <Orca OrcaName="BattleWorkUnit" orcaPath="CueSheetFolder/BattleWorkUnit" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
       <Orca OrcaName="BattleBgmStage1CueSheet" orcaPath="CueSheetFolder/BattleWorkUnit/BattleBgmStage1CueSheet" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
-      <Orca OrcaName="AttackSeCueSheet" orcaPath="CueSheetFolder/BattleWorkUnit/AttackSeCueSheet" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
-      <Orca OrcaName="EnemyDefeatedSeCueSheet" orcaPath="CueSheetFolder/BattleWorkUnit/EnemyDefeatedSeCueSheet" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
+      <Orca OrcaName="BattleBgmStage_1" orcaPath="CueSheetFolder/BattleWorkUnit/BattleBgmStage1CueSheet/BattleBgmStage_1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAtmcUserOrca"/>
     </Orca>
   </OrcaTree>
 </OrcaTrees>

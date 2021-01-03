@@ -4,19 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DubTapMusic;
-using DubTapMania_acf;
+using UniRx;
+using UniRx.Triggers;
 
 public class BattleManagerScript : MonoBehaviour
 {
-    public EnemyData enemyData;
+    [SerializeField] private  Text hpText;
+    [SerializeField] private  Text enemyNameText;
+    [SerializeField] private  Text bpmText;
+    [SerializeField] private  Text beatText;
+    [SerializeField] private  SpriteRenderer mainSpriteRenderer;
+    [SerializeField] private Button kickButton;
+    [SerializeField] private Button punchButton;
+
+    private EnemyData enemyData;
     private int enemyHp;
     private int enemyIdx = 0;
     private List<EnemyData> enemyList;
-    public Text hpText;
-    public Text enemyNameText;
     int stockDamage = 0;
-    public SpriteRenderer mainSpriteRenderer;
-
     int damagedRemainingFrame = 0;
     int defeatedRemainingFrame = 0;
 
@@ -31,13 +36,16 @@ public class BattleManagerScript : MonoBehaviour
     private static readonly string CUE_SHEET_NAME_ATTACK_SE = "AttackSe";
     private static readonly string CUE_SHEET_NAME_ENEMY_DEFEATED_SE = "EnemyDefeatedSe";
 
-    int musicFrame = 0;
+    private static readonly int FPS = 60;
+    private static readonly int MINSEC = 60;
+    private string stageName;
+    private int musicFrame = 0;
+    private int bpm = 0;
+    private int bar = 0;
+    private int beat = 0;
 
     // MEMO: スプライトのファイルパス指定時は拡張子不要。
     private static readonly string BASE_PATH_ENEMY = "Enemy/DubTapMusic/";
-    private static readonly string ENEMY_STATUS_NORMAL = "01";
-    private static readonly string ENEMY_STATUS_DAMAGED = "11";
-    private static readonly string ENEMY_STATUS_DEFEATED = "21";
 
     public enum AtkCode
     {
@@ -67,6 +75,14 @@ public class BattleManagerScript : MonoBehaviour
         attackSeSound = createCriAtomSource(CUE_SHEET_NAME_ATTACK_SE, false);
         enemySeSound = createCriAtomSource(CUE_SHEET_NAME_ENEMY_DEFEATED_SE, false);
 
+        // ビートのコールバックを設定
+        CriAtomExBeatSync.SetCallback(this.callback);
+
+        // ステージ設定
+        stageName = "STAGE 1";
+        bpm = 150;
+        bpmText.text = bpm.ToString();
+
         // 敵データ準備
         enemyList = new List<EnemyData>();
         EnemyData enemy;
@@ -85,6 +101,97 @@ public class BattleManagerScript : MonoBehaviour
 
         Debug.Log("BattleManagerScript.Awake() END.");
     }
+
+    void OnEnable() {
+
+        // MEMO: OnPointerDownAsObservableを使うには「using UniRx.Triggers;」が必要。
+        kickButton
+            .OnPointerDownAsObservable()
+            .Subscribe(_ => OnPointerDownKickButton())
+            .AddTo(this);
+
+        punchButton
+            .OnPointerDownAsObservable()
+            .Subscribe(_ => OnPointerDownPunchButton())
+            .AddTo(this);
+
+        // // BGMフレーム加算＆ビート情報のインクリメント
+        // this
+        //     .UpdateAsObservable()
+        //     .Subscribe(_ => {
+        //         musicFrame++;
+        //         bool updBeatFlg = false;
+
+        //         // BPMは60秒に4分音符がいくつ起きるかの数。
+        //         // フレームは60フレーム設定の場合、1/60秒
+        //         // つまり1拍のフレーム数は、「60秒*60フレーム/BPM」で算出できる。
+        //         // →没！！！フレームレート60を必ずキープできるわけではない！
+        //         if (musicFrame % (MINSEC * FPS / bpm) == 0)
+        //         {
+        //             updBeatFlg = true;
+        //             quarterNote++;
+        //             if (quarterNote == 5)
+        //             {
+        //                 bar++;
+        //                 quarterNote = 1;
+        //                 eighthNote = 0;
+        //                 sixteenthNote = 0;
+        //             }
+        //         }
+
+        //         if (musicFrame % (MINSEC * FPS / bpm / 2) == 0)
+        //         {
+        //             updBeatFlg = true;
+        //             eighthNote++;
+        //         }
+
+        //         if (musicFrame % (MINSEC * FPS / bpm / 2 / 2) == 0)
+        //         {
+        //             sixteenthNote++;
+        //         }
+
+        //         if (updBeatFlg)
+        //         {
+        //             beatText.text = bar.ToString()
+        //                           + " "
+        //                           + quarterNote.ToString()
+        //                           + " "
+        //                           + eighthNote.ToString();
+        //         }
+        //     });
+        
+        // 敵撃破演出フレーム残あり
+        this
+            .UpdateAsObservable()
+            .Where(_ => defeatedRemainingFrame > 0)
+            .Subscribe(_ => {
+                damagedRemainingFrame = 0;
+                defeatedRemainingFrame--;
+                if (defeatedRemainingFrame == 0)
+                {
+                    enemyIdx++;
+                    if (enemyIdx > enemyList.Count - 1)
+                    {
+                        enemyIdx = 0;
+                    }
+                    setEnemy();
+                    mainSpriteRenderer.sprite = enemyData.normalSprite;
+                }
+            });
+
+        // 敵ダメージ演出フレーム残あり
+        this
+            .UpdateAsObservable()
+            .Where(_ => damagedRemainingFrame > 0)
+            .Subscribe(_ => {
+                damagedRemainingFrame--;
+                if (damagedRemainingFrame == 0)
+                {
+                    mainSpriteRenderer.sprite = enemyData.normalSprite;
+                }
+            });
+
+        }
 
     // Start is called before the first frame update
     void Start()
@@ -107,12 +214,23 @@ public class BattleManagerScript : MonoBehaviour
 
         // 戦闘BGM再生（このシーンに遷移してきた時に再生開始）
         // MEMO: シーン遷移時に再生する音はOnActiveSceneChangedで本メソッドを呼び出してメンバに代入しておかないと何故かエラーが発生する（AwakeやStartだとダメ）。シーン遷移後ならAwake内でOK。
-        battleBgmSound = createCriAtomSource(CUE_SHEET_NAME_BATTLE_BGM_STAGE1, true);
+        // MEMO: CriAtomCraftで設定したシーケンスループマーカーでループさせるため、CriAtomSource側のループ設定はオフ
+        battleBgmSound = createCriAtomSource(CUE_SHEET_NAME_BATTLE_BGM_STAGE1, false);
         battleBgmSound.Play(0);
 
         // BattleSceneをアクティブに設定
         Scene battleScene = SceneManager.GetSceneByName("BattleScene");
         SceneManager.SetActiveScene(battleScene);
+    }
+
+    void callback(ref CriAtomExBeatSync.Info info)
+    {
+        Debug.Log("BattleManagerScript.BeatOn() BEGIN.");
+
+        beat++;
+        beatText.text = beat.ToString();
+    
+        Debug.Log("BattleManagerScript.BeatOn() END.");
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -151,31 +269,7 @@ public class BattleManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // BGMフレーム加算
-        musicFrame++;
 
-        if (defeatedRemainingFrame > 0) {
-            damagedRemainingFrame = 0;
-            defeatedRemainingFrame--;
-            if (defeatedRemainingFrame == 0)
-            {
-                enemyIdx++;
-                if (enemyIdx > enemyList.Count - 1)
-                {
-                    enemyIdx = 0;
-                }
-                setEnemy();
-                mainSpriteRenderer.sprite = enemyData.normalSprite;
-            }
-        }
-        else if (damagedRemainingFrame > 0)
-        {
-            damagedRemainingFrame--;
-            if (damagedRemainingFrame == 0)
-            {
-                mainSpriteRenderer.sprite = enemyData.normalSprite;
-            }
-        }
     }
 
     public void OnPointerDownKickButton()

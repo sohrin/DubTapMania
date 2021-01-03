@@ -4,13 +4,15 @@
   <OrcaTree OrcaName="(no name)">
     <Orca OrcaName="acb_Info" OrcaType="Orca2Object">
       <Orca OrcaName="acb_Info_Root" OrcaType="Orca2Object">
-        <Orca OrcaName="BattleBgmStage1CueSheet" AwbHash="16238" LastOutputCueSheetSize="195136" OoUniqId="2d0c6bf7-63b5-41fb-8014-832ef552f23e" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
+        <Orca OrcaName="BattleBgmStage1CueSheet" AwbHash="16238" LastOutputCueSheetSize="195360" OoUniqId="2d0c6bf7-63b5-41fb-8014-832ef552f23e" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
           <Orca OrcaName="BattleBgmStage_1" CueID="0" Pos3dDistanceMax="500" Pos3dDistanceMin="1" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
             <Orca OrcaName="Track_BattleBgmStage_1" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
               <Orca OrcaName="BattleBgmStage_1.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/BattleWorkUnit_MaterialInfo/MaterialRootFolder/BattleBgmStage_1.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform">
                 <Orca OrcaName="BattleBgmStage_1.wav" BitsPerSamples="24" Channels="2" EncodeFileSize="188328" ReloopEnd="282240" ResamplingRate="44100" SampleFrames="282240" SamplingRate="44100" SourceFileSize="1696792" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
               </Orca>
             </Orca>
+            <Orca OrcaName="BeatSyncParam" BeatListStr="11111111111111111111111111111111" Bpm="150" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBeatSyncParam"/>
+            <Orca OrcaName="" EventEnableFlag="True" EventEndTime="6400" EventStartTime="0" InfinityLoopFlag="True" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoEventLoop"/>
             <Orca OrcaName="BuildCueInfo" BuildCueStreamType="Memory" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBuildCueInfo"/>
           </Orca>
         </Orca>

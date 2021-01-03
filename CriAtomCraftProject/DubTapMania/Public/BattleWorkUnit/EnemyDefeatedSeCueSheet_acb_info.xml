@@ -16,7 +16,7 @@
           <Orca OrcaName="Enemy_0002_pizzicato_21" CueID="1" Pos3dDistanceMax="500" Pos3dDistanceMin="1" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
             <Orca OrcaName="Track_Enemy_0002_pizzicato_21" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
               <Orca OrcaName="Enemy_0002_pizzicato_21.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/BattleWorkUnit_MaterialInfo/MaterialRootFolder/Enemy_0002_pizzicato_21.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform">
-                <Orca OrcaName="Enemy_0002_pizzicato_21.wav" Channels="2" EncodeFileSize="47836" ReloopEnd="70560" ResamplingRate="44100" SampleFrames="70560" SamplingRate="44100" SourceFileSize="283894" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
+                <Orca OrcaName="Enemy_0002_pizzicato_21.wav" Channels="2" ReloopEnd="70560" ResamplingRate="44100" SampleFrames="70560" SamplingRate="44100" SourceFileSize="283894" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveform"/>
               </Orca>
             </Orca>
             <Orca OrcaName="BuildCueInfo" BuildCueStreamType="Memory" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBuildCueInfo"/>

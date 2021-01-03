@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b90c3b233d4d43bcf13ce11d8a71d, type: 3}
   m_Name: 0002_pizzicato
   m_EditorClassIdentifier: 
-  id: 0
-  name: 
-  hp: 0
-  atk: 0
-  def: 0
-  normalSprite: {fileID: 0}
-  damagedSprite: {fileID: 0}
-  defeatedSprite: {fileID: 0}
+  id: 2
+  name: pizzicato
+  hp: 10
+  atk: 2
+  def: 2
+  normalSprite: {fileID: 21300000, guid: b4a5dcfa813ce4a4d9f22c42d5f4980d, type: 3}
+  damagedSprite: {fileID: 21300000, guid: e1778e9777a474a50a5b92500c6ac8e8, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: d4e044622c23c454db462095ecfdc770, type: 3}
