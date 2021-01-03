@@ -43,9 +43,14 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 1. ワークユニット、キュー、ファイル名を設計する（ひとまずワークユニットはシーン毎等の大きな分け、キューはBGMは1つ・SEはある程度の分けて1つ、ファイル名はC#コード生成時がうまくいかなくなるので数字から始めないこと）
 2. 「/OriginalSound/【ワークユニット名】/【キュー名】」にwavファイルを格納する。
 3. CriAtomCraft上でワークユニット、キューを作成し、追加wavファイルをドロップする。シーンを追加してアクティブを切り替える流れ。
+
+※以下URLを見ると、フォルダドロップでもいけるっぽい？
+https://qiita.com/tatmos/items/858ec7f6507b6abd015c
+
 4. 「ビルド」メニュー＞Atomキューシートバイナリ→全シートチェック、追加出力とオプションはすべてチェックし、「ビルド」ボタンを押下する。ビルド完了、エラーや警告が発生していないこと。また、詳細なビルドログをCriAtomCraftプロジェクトフォルダ直下に保存しておく。ファイル名は「BuildDetailedLog.txt」とする。
 5. 「【Unityプロジェクトフォルダ】/Tools/CopyCriAtomCraftBin2Assets/CopyCriAtomCraftBin2Assets.command」（mac）用を実行し、acfファイル、acbファイル、csファイルをクリーン・コピーする。
 6. Unityのウィンドウをアクティブにし、Assetsをインポートさせる（metaファイルが生成される）。
+
 
 
 # バグ
@@ -65,15 +70,22 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 ・敵データのScriptableObject化
 
 ## TODO（なう）
-
+・倒した敵の数をカウントするようにする。
+・セーブデータの保存（ローカル）
 
 ## TODO（未）
-・敵データのScriptableObjectをCSVインポート
+・CRIADX2のビート同期を使ってリズムに合わせた演出をつける
+https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
+・セーブデータの保存（PlayFab）
+・セーブデータの復元（PlayFab）
 ・UniRx導入
 ・BPM設定から拍を判定
 ・タイトルシーンでのユーザ認証
-・セーブデータの保存（ローカル、ネット）
-・セーブデータの復元（ネット）
+・音声の読み込み方の見直し
+Unity + ADX2におけるサウンドデータの読み込みと破棄
+https://qiita.com/Takaaki_Ichijo/items/c7e14234f799fdca3e68
+あんスタ！！MusicにおけるCRI ADX2活用事例（後編）
+https://qiita.com/k7a/items/fe29f3edec3063f03a25
 ・マスタデータの準備（ローカル）
 ・マスタデータの準備（ネット）
 ・タップエリアの設定（ひとまずボタンから画面全体。拡張可能なようにパネルを設定したほうがよさそう）
@@ -89,7 +101,8 @@ https://game.criware.jp/manual/unity_plugin/latest/contents/cri4u_component_init
 ・課金システム
 ・動画広告と音楽ゲームを絡める
 ・CircleCIでのビルド・DeployGateでのデプロイの自動化
-・敵データをAPIから取得してScriptableObjectに流し込む
+・敵データをAPIから取得してScriptableObjectに流し込む／敵データのScriptableObjectをCSVインポート
+
 
 
 
@@ -297,6 +310,28 @@ https://github.com/tatmos/MakeAtomCraftData
 
 ・AssetBundleを完全に理解する
 https://qiita.com/k7a/items/d27640ac0276214fc850
+
+・Unity + PlayFab + ADX2でAsset Bundleを介さないサウンドデータの配信を実装する
+https://qiita.com/Takaaki_Ichijo/items/bc6ef09fa55d496e5800
+
+・サウンドフォントからADX2LE変換するSF2ADX2を作ってみた
+https://qiita.com/tatmos/items/cfd625c7a4363a3dfe97
+
+・[Unity]ADX2 LEを使ったときに実機で音が出ないときのメモ
+https://qiita.com/haifuri/items/e27a9712d203bdbcdb09
+
+・Unity + ADX2におけるサウンドデータの読み込みと破棄
+https://qiita.com/Takaaki_Ichijo/items/c7e14234f799fdca3e68
+
+・Unity + ADX2環境でゲーム中の音を録音する
+https://qiita.com/Takaaki_Ichijo/items/faf96c22740ff5a7587d
+
+・ADX2 for Unityで楽曲がリアルタイムに変化するBGMを再生（インタラクティブミュージック）
+https://qiita.com/Takaaki_Ichijo/items/4ffd0fa28f196089defd
+
+
+
+
 
 
 
