@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class BattleManagerScript : MonoBehaviour
     [SerializeField] private  Text enemyNameText;
     [SerializeField] private  Text bpmText;
     [SerializeField] private  Text beatText;
+    [SerializeField] private  Text judgeText;
     [SerializeField] private  SpriteRenderer mainSpriteRenderer;
     [SerializeField] private Button kickButton;
     [SerializeField] private Button punchButton;
@@ -36,10 +38,10 @@ public class BattleManagerScript : MonoBehaviour
     private static readonly string CUE_SHEET_NAME_ATTACK_SE = "AttackSe";
     private static readonly string CUE_SHEET_NAME_ENEMY_DEFEATED_SE = "EnemyDefeatedSe";
 
-    private static readonly int FPS = 60;
     private static readonly int MINSEC = 60;
     private string stageName;
-    private int musicFrame = 0;
+    private static float musicStartTimeMs;
+    private bool recalcMusicStartTimeMsFinishFlg = false;
     private int bpm = 0;
     private int bar = 0;
     private int beat = 0;
@@ -76,7 +78,7 @@ public class BattleManagerScript : MonoBehaviour
         enemySeSound = createCriAtomSource(CUE_SHEET_NAME_ENEMY_DEFEATED_SE, false);
 
         // ビートのコールバックを設定
-        CriAtomExBeatSync.SetCallback(this.callback);
+        CriAtomExBeatSync.SetCallback(this.BeatOn);
 
         // ステージ設定
         stageName = "STAGE 1";
@@ -95,9 +97,6 @@ public class BattleManagerScript : MonoBehaviour
         
         // バトル中の敵を設定
         setEnemy();
-
-        // BGMフレーム初期化
-        musicFrame = 0;
 
         Debug.Log("BattleManagerScript.Awake() END.");
     }
@@ -218,17 +217,33 @@ public class BattleManagerScript : MonoBehaviour
         battleBgmSound = createCriAtomSource(CUE_SHEET_NAME_BATTLE_BGM_STAGE1, false);
         battleBgmSound.Play(0);
 
+        // BGM開始時刻の初期化
+        musicStartTimeMs = Time.time * 1000;
+        Debug.Log("★★★★★★ musicStartTimeMs ★★★★★");
+        Debug.Log(musicStartTimeMs.ToString());
+
         // BattleSceneをアクティブに設定
         Scene battleScene = SceneManager.GetSceneByName("BattleScene");
         SceneManager.SetActiveScene(battleScene);
     }
 
-    void callback(ref CriAtomExBeatSync.Info info)
+    void BeatOn(ref CriAtomExBeatSync.Info info)
     {
         Debug.Log("BattleManagerScript.BeatOn() BEGIN.");
 
         beat++;
         beatText.text = beat.ToString();
+
+        // if (!recalcMusicStartTimeMsFinishFlg) {
+        //     // 1拍目の時間から1拍分の時間を引いた時間をBGM開始時刻として再設定する。
+        //     // 1ビート目が始まるまではズレが補正できない。演出で耐えるか・・・？
+        //     // TODO: うまくいったら「BGM開始時刻の初期化」処理を削除
+
+        //     // BGM開始時刻の初期化
+        //     musicStartTimeMs = Time.time * 1000 - ( (float) MINSEC * 1000 / (float) bpm );
+
+        //     recalcMusicStartTimeMsFinishFlg = true;
+        // }
     
         Debug.Log("BattleManagerScript.BeatOn() END.");
     }
@@ -307,6 +322,23 @@ public class BattleManagerScript : MonoBehaviour
     {
         Debug.Log("BattleManagerScript.OnPointerDownPunchButton() BEGIN. atkCode:[" + atkCode + "]");
 
+        // タッチ時刻
+        float touchTimeMs = Time.time * 1000;
+        Debug.Log("★★★★★★ touchTimeMs ★★★★★");
+        Debug.Log(touchTimeMs.ToString());
+
+        // 曲開始からの経過時間
+        float timeMsFromMusicStart = touchTimeMs - musicStartTimeMs;
+        Debug.Log("★★★★★★ timeMsFromMusicStart ★★★★★");
+        Debug.Log(timeMsFromMusicStart.ToString());
+
+        // 開始から何拍目かを小数点で算出(1足すことでbeatと整合性をあわせている。beatは開始時に1、経過時間は1拍経って1になる)
+        float beatFromMusicStart = timeMsFromMusicStart /  ( (float) MINSEC * 1000 / (float) bpm ) + 1f;
+        Debug.Log("★★★★★★ beatFromMusicStart ★★★★★");
+        Debug.Log(beatFromMusicStart.ToString());
+        judgeText.text = beatFromMusicStart.ToString();
+        
+        // 攻撃音再生
         PlayAtkSound(atkCode);
 
         if (defeatedRemainingFrame > 0) 

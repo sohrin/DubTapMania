@@ -72,22 +72,22 @@ https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
 ※①タイムラインで右クリック＞ビート同期情報の作成、②インスペクターでBPM設定、ビートパターン設定（各拍でイベント発生する場合、全ビートをクリックし明るくする）
 ※CriAtomSource側でループさせてると1ループ目しか拍イベントが発生しない。シーケンスループマーカーでループさせ、CriAtomSource側のループ設定はfalseにしておく必要あり。
 https://game.criware.jp/manual/adx2_tool/latest/criatom_tools_atomcraft_sequence_loop_marker.html
-
-## TODO（なう）
 ・攻撃時のタイミング判定（曲再生時からの時間で判定）
 【Unity】音ゲーの仕組みを学び「〇〇の達人」をUnityで作る　パート1
 https://qiita.com/kousaku-maron/items/42f801df2b87e37b1d91
 
+## TODO（なう）
+・攻撃時のタイミング判定（続き、何拍目の何分音符かを経過msから算出して表示）
 ・ユーザ登録、ユーザ認証（PlayFab利用）
 
-・using DubTapMania_acf;
-・倒した敵の数をカウントするようにする。
-・セーブデータの保存（ローカル）
 
 ## TODO（未）
+・倒した敵の数をカウントするようにする。
+・セーブデータの保存（ローカル）
+・using DubTapMania_acf;
+
 ・セーブデータの保存（PlayFab）
 ・セーブデータの復元（PlayFab）
-
 ・BPM設定から拍を判定
 ・タイトルシーンでのユーザ認証
 ・音声の読み込み方の見直し
@@ -273,6 +273,11 @@ https://www.shibuya24.info/entry/2015/09/23/181052#uGUI%E3%81%AE%E3%83%9C%E3%82%
 ・CRIADX2のビート同期を使ってリズムに合わせた演出をつける
 https://qiita.com/nishimura-ma/items/bac6e3d6528490bd9e36
 
+・【Unity】音ゲーの仕組みを学び「〇〇の達人」をUnityで作る　パート1
+https://qiita.com/kousaku-maron/items/42f801df2b87e37b1d91
+
+・Time.time（公式ドキュメント）
+https://docs.unity3d.com/ja/2019.4/ScriptReference/Time-time.html
 
 
 
