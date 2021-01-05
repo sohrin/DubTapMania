@@ -915,7 +915,7 @@ MonoBehaviour:
   enemyNameText: {fileID: 1553500646}
   bpmText: {fileID: 1527965600}
   beatText: {fileID: 354742943}
-  judgeText: {fileID: 0}
+  judgeText: {fileID: 613444174}
   mainSpriteRenderer: {fileID: 2085957985}
   kickButton: {fileID: 2072539142}
   punchButton: {fileID: 514856398}
